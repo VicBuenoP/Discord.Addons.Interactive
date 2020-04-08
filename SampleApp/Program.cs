@@ -20,7 +20,7 @@ namespace SampleApp
 
         public async Task MainAsync()
         {
-            Environment.SetEnvironmentVariable("bot-token", "Njg4MDcyNTM0MzIyNzA4NTQy.Xn0KSQ.f6AH5ogXSDeOu7ElYc8bf7u8RqQ");
+            Environment.SetEnvironmentVariable("bot-token", "");
             var token = Environment.GetEnvironmentVariable("bot-token");
 
             client = new DiscordSocketClient();
