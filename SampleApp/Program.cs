@@ -20,7 +20,8 @@ namespace SampleApp
 
         public async Task MainAsync()
         {
-            var token = Environment.GetEnvironmentVariable("discord-foxboat-token");
+            Environment.SetEnvironmentVariable("bot-token", "Njg4MDcyNTM0MzIyNzA4NTQy.Xn0KSQ.f6AH5ogXSDeOu7ElYc8bf7u8RqQ");
+            var token = Environment.GetEnvironmentVariable("bot-token");
 
             client = new DiscordSocketClient();
 
@@ -40,7 +41,7 @@ namespace SampleApp
 
             commands = new CommandService();
             await commands.AddModulesAsync(Assembly.GetEntryAssembly(), services);
-
+            
             client.MessageReceived += HandleCommandAsync;
 
             await Task.Delay(-1);
@@ -52,7 +53,9 @@ namespace SampleApp
             if (msg.Author.IsBot) return;
 
             int argPos = 0;
-            if (!(msg.HasStringPrefix("i~>", ref argPos))) return;
+            if (!(msg.HasStringPrefix("!", ref argPos))) return;
+
+            var newMsg = msg.Content.Replace(msg.Content, msg.Content.ToLower());
 
             var context = new SocketCommandContext(client, msg);
             await commands.ExecuteAsync(context, argPos, services);
